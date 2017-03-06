@@ -6,9 +6,6 @@ import com.epam.patterns.creational.ingredients.Dough;
 import com.epam.patterns.creational.ingredients.Pepperoni;
 import com.epam.patterns.creational.ingredients.Sauce;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public abstract class Pizza {
 
     String name;
@@ -16,7 +13,6 @@ public abstract class Pizza {
     Sauce sauce;
     Cheese cheese;
     Pepperoni pepperoni;
-    List<String> toppings = new ArrayList<>();
 
     public abstract void prepare();
 
@@ -30,9 +26,5 @@ public abstract class Pizza {
 
     public void box() {
         System.out.println("Boxing pizza...");
-    }
-
-    public String getName() {
-        return name;
     }
 }
