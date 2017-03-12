@@ -1,6 +1,8 @@
 package com.epam.patterns.structural;
 
 import com.epam.patterns.structural.bridge.ORMFramework;
+import com.epam.patterns.structural.facade.OrderServiceFacade;
+import com.epam.patterns.structural.facade.OrderServiceFacadeImpl;
 
 public class Main {
 
@@ -22,5 +24,8 @@ public class Main {
         myBatis.delete(5L);
 
         System.out.println(CONSOLE_SEPARATOR);
+        System.out.println("Facade example");
+        OrderServiceFacade orderServiceFacade = OrderServiceFacadeImpl.getInstance();
+        orderServiceFacade.order(1L);
     }
 }

@@ -18,7 +18,7 @@ public final class AdapterExample {
         PayDCreditCardImpl payDCreditCard = preparePayDCreditCard();
 
         System.out.println("But we have legacy system and everything is adapted here for XPay payment vendor that has legacy API");
-        System.out.println("So we create an adapter to make existing functionality work with it");
+        System.out.println("So we create an adapter to make existing functionality work with new vendor");
 
         XPayCreditCard adapter = new PayDCreditCardAdapter(payDCreditCard);
         testXPayCreditCard(adapter);

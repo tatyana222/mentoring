@@ -8,7 +8,7 @@ import com.epam.patterns.structural.bridge.persistence.PersistenceAPI;
 
 public final class PersistenceProvider {
 
-    public PersistenceProvider() {
+    private PersistenceProvider() {
     }
 
     public static ORMFramework getProvider(String provider) {
