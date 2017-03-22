@@ -42,6 +42,8 @@ public class RESTClient {
         System.out.println(CONSOLE_SEPARATOR);
 
         delete(userId, webTarget);
+
+        client.close();
     }
 
     private static User post(WebTarget webTarget) {
@@ -59,6 +61,8 @@ public class RESTClient {
         User createdUser = response.readEntity(User.class);
         System.out.println("Created User: " + createdUser);
         System.out.println("Created User id: " + createdUser.getId());
+
+        response.close();
         return createdUser;
     }
 
@@ -71,6 +75,8 @@ public class RESTClient {
 
         System.out.println(RESPONSE_STATUS_MESSAGE + response.getStatus());
         System.out.println("Updated User id: " + response.readEntity(String.class));
+
+        response.close();
     }
 
     private static void uploadLogo(Long userId) throws IOException {
@@ -95,6 +101,10 @@ public class RESTClient {
             System.out.println(RESPONSE_STATUS_MESSAGE + response.getStatus());
             System.out.println("Path to User logo: " + response.readEntity(String.class));
 
+            response.close();
+
+        } finally {
+            client.close();
         }
     }
 
@@ -124,9 +134,12 @@ public class RESTClient {
             while ((bytesRead = inputStream.read(buffer)) != -1) {
                 outputStream.write(buffer, 0, bytesRead);
             }
-        }
+            System.out.println("User logo has been successfully downloaded to location: " + pathToFile);
 
-        System.out.println("User logo has been successfully downloaded to location: " + pathToFile);
+        } finally {
+            response.close();
+            client.close();
+        }
     }
 
     private static void delete(Long userId, WebTarget webTarget) {
@@ -136,5 +149,7 @@ public class RESTClient {
 
         System.out.println(RESPONSE_STATUS_MESSAGE + response.getStatus());
         System.out.println("Deleted User id: " + response.readEntity(String.class));
+
+        response.close();
     }
 }
