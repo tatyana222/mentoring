@@ -8,11 +8,12 @@ import org.glassfish.jersey.media.multipart.file.FileDataBodyPart;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.*;
+
+import static javax.ws.rs.client.Entity.entity;
 
 public class RESTClient {
 
@@ -52,8 +53,7 @@ public class RESTClient {
 
         System.out.println("POST request to create new User");
 
-        Response response = webTarget.request(MediaType.APPLICATION_XML)
-                .post(Entity.entity(user, MediaType.APPLICATION_XML), Response.class);
+        Response response = webTarget.request().post(entity(user, MediaType.APPLICATION_XML), Response.class);
 
         System.out.println(RESPONSE_STATUS_MESSAGE + response.getStatus());
         User createdUser = response.readEntity(User.class);
@@ -66,8 +66,8 @@ public class RESTClient {
         Long userId = user.getId();
         System.out.println("PUT request to update User with id " + userId);
 
-        Response response = webTarget.path(String.valueOf(userId)).request(MediaType.APPLICATION_JSON)
-                .put(Entity.entity(user, MediaType.APPLICATION_JSON), Response.class);
+        Response response = webTarget.path(String.valueOf(userId)).request()
+                .put(entity(user, MediaType.APPLICATION_JSON), Response.class);
 
         System.out.println(RESPONSE_STATUS_MESSAGE + response.getStatus());
         System.out.println("Updated User id: " + response.readEntity(String.class));
@@ -90,7 +90,7 @@ public class RESTClient {
 
             String servicePath = String.valueOf(userId) + "/logos";
             Response response = webTarget.path(servicePath).request()
-                    .post(Entity.entity(formDataMultiPart, MediaType.MULTIPART_FORM_DATA), Response.class);
+                    .post(entity(formDataMultiPart, MediaType.MULTIPART_FORM_DATA), Response.class);
 
             System.out.println(RESPONSE_STATUS_MESSAGE + response.getStatus());
             System.out.println("Path to User logo: " + response.readEntity(String.class));
