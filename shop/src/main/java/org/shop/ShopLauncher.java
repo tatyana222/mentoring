@@ -4,7 +4,6 @@ package org.shop;
 import org.shop.api.UserService;
 import org.shop.repository.ItemRepository;
 import org.shop.repository.ProductRepository;
-import org.shop.repository.ProposalRepository;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

@@ -7,7 +7,7 @@ import org.shop.data.Proposal;
 import org.shop.repository.ProposalRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
+@Repository("proposalRepository")
 public class ProposalMapRepository extends AbstractMapRepository<Proposal> implements ProposalRepository {
 
     /* (non-Javadoc)

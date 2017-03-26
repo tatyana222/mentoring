@@ -8,7 +8,7 @@ import org.shop.data.Product;
 import org.shop.repository.ProductRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
+@Repository("productRepository")
 public class ProductMapRepository extends AbstractMapRepository<Product> implements ProductRepository {
 
     /* (non-Javadoc)

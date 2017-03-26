@@ -8,14 +8,14 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Service("userService")
 public class UserServiceImpl implements UserService {
 
     private UserRepository repository;
     
-    public void setRepository(UserRepository repository) {
-        this.repository = repository;
-    }
+//    public void setRepository(UserRepository repository) {
+//        this.repository = repository;
+//    }
 
     /* (non-Javadoc)
      * @see org.shop.api.UserService#registerUser(org.shop.data.User)

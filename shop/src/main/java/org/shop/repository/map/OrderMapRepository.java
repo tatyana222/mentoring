@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
  * 
  * @author Dzmitry_Naskou
  */
-@Repository
 public class OrderMapRepository extends AbstractMapRepository<Order> implements OrderRepository {
 
     /**

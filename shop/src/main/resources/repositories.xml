@@ -6,6 +6,8 @@
 
     <context:property-placeholder location="classpath:shop.properties"/>
 
+    <context:component-scan base-package="org.shop.repository.map"/>
+
     <bean id="userRepositoryFactory" class="org.shop.repository.factory.UserRepositoryFactory"/>
 
     <bean id="userRepository" factory-bean="userRepositoryFactory" factory-method="createUserRepository"/>
@@ -13,13 +15,5 @@
     <bean id="orderRepository" class="org.shop.repository.map.OrderMapRepository">
         <constructor-arg name="initialSequence" value="${sequence.initial}"/>
     </bean>
-
-    <bean name="itemRepository" class="org.shop.repository.map.ItemMapRepository"/>
-
-    <bean id="proposalRepository" class="org.shop.repository.map.ProposalMapRepository"/>
-
-    <bean name="productRepository" class="org.shop.repository.map.ProductMapRepository"/>
-
-    <bean id="sellerRepository" class="org.shop.repository.map.SellerMapRepository"/>
 
 </beans>

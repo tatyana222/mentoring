@@ -7,7 +7,7 @@ import org.shop.data.Item;
 import org.shop.repository.ItemRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
+@Repository("itemRepository")
 public class ItemMapRepository extends AbstractMapRepository<Item> implements ItemRepository {
 
     /* (non-Javadoc)
