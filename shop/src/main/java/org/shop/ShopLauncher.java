@@ -1,6 +1,7 @@
 package org.shop;
 
 
+import org.shop.api.OrderService;
 import org.shop.api.UserService;
 import org.shop.repository.ItemRepository;
 import org.shop.repository.ProductRepository;
@@ -31,6 +32,10 @@ public class ShopLauncher {
         System.out.println("Get bean by name and type:");
         ProductRepository productRepository = context.getBean("productRepository", ProductRepository.class);
         System.out.println(productRepository.toString());
+
+        System.out.println("Get bean by name and type:");
+        OrderService orderService = context.getBean("orderService", OrderService.class);
+        System.out.println(orderService.toString());
 
         System.out.println("Get bean by alias:");
         UserService customerService = (UserService) context.getBean("customerService");

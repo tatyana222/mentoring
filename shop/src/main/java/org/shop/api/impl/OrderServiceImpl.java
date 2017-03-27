@@ -11,11 +11,17 @@ import org.shop.data.Order;
 import org.shop.data.Proposal;
 import org.shop.data.User;
 import org.shop.repository.OrderRepository;
+import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+
+@Service("orderService")
 public class OrderServiceImpl implements OrderService {
 
+    @Resource(name = "orderRepository")
     private OrderRepository orderRepository;
-    
+
+    @Resource(name = "itemService")
     private ItemService itemService;
     
     public void setOrderRepository(OrderRepository orderRepository) {
