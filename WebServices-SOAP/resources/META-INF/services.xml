@@ -1,0 +1,10 @@
+<service name="RandomNumberGenerator" scope="application">
+    <description>
+        Random Number Service
+    </description>
+    <parameter name="ServiceClass">com.epam.mentoring.soap.generator.RandomNumberGenerator</parameter>
+    <operation name="randomNumber">
+        <messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+        <actionMapping>urn:randomNumber</actionMapping>
+    </operation>
+</service>
