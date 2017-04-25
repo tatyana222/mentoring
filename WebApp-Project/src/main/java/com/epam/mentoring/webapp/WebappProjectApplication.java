@@ -3,7 +3,7 @@ package com.epam.mentoring.webapp;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-// run app using command:
+// to run app using Gradle wrapper type the command:
 // gradlew build && java -jar build/libs/webapp-project-1.0.jar
 // then go to http://localhost:8080
 @SpringBootApplication
