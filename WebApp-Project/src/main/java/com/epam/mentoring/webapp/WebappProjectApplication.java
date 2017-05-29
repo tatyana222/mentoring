@@ -3,6 +3,7 @@ package com.epam.mentoring.webapp;
 import org.apache.catalina.connector.Connector;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;
 import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
 import org.springframework.context.annotation.Bean;
@@ -11,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 // gradlew build && java -jar build/libs/webapp-project-1.0.jar
 // then go to http://localhost:8080
 @SpringBootApplication
+//@EnableOAuth2Sso
 public class WebappProjectApplication {
 
 	public static void main(String[] args) {
