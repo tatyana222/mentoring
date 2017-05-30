@@ -20,19 +20,20 @@ app.controller("authController", function ($http, $location, $rootScope) {
     var authenticate = function(credentials, callback) {
 
         var headers = credentials ? {
-            authorization: "Basic "
+            Authorization: "Basic "
             + btoa(credentials.username + ":" + credentials.password)
         } : {};
 
         $http.get("/web-project/user", {headers : headers}).then(function (response) {
             // self.user = response.data.userAuthentication.details.name;
-            self.user = response.data.name;
-            // self.admin = data && data.roles && data.roles.indexOf("ROLE_ADMIN")>-1;
+            var data = response.data;
+            self.user = data.name;
+            $rootScope.admin = data.roles && data.roles.indexOf("ROLE_ADMIN")>-1;
             $rootScope.authenticated = true;
             callback && callback();
         }, function () {
             self.user = "N/A";
-            // self.admin = false;
+            $rootScope.admin = false;
             $rootScope.authenticated = false;
             callback && callback();
         });
@@ -55,7 +56,7 @@ app.controller("authController", function ($http, $location, $rootScope) {
     self.logout = function () {
         $http.post('/web-project/logout', {}).then(function () {
             $rootScope.authenticated = false;
-            // self.admin = false;
+            $rootScope.admin = false;
             $location.path("/");
         }, function () {
             console.log("Logout failed");

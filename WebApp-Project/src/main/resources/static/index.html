@@ -36,7 +36,7 @@
                 <li><a href="web-project#!/"><i class="fa fa-home"></i> Home</a></li>
                 <li><a href="web-project#!/about"><i class="fa fa-shield"></i> About</a></li>
                 <li><a href="web-project#!/contact"><i class="fa fa-comment"></i> Contact</a></li>
-                <li><a href="web-project#!/users"><i class="fa fa-users"></i> Users</a></li>
+                <li ng-show="authenticated && admin"><a href="web-project#!/users"><i class="fa fa-users"></i> Users</a></li>
 
                 <li>
                     <div ng-controller="authController as authController">
@@ -50,7 +50,7 @@
                                         <div class="col-md-12">
                                             Login via
                                             <div class="social-buttons">
-                                                <a href="../login" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
+                                                <a href="/web-project/login" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
                                             </div>
                                             or
                                             <div class="alert alert-danger" role="alert" ng-show="authController.error">

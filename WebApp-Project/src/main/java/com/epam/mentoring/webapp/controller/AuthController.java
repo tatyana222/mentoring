@@ -10,14 +10,13 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 @RestController
-public class LoginController {
+public class AuthController {
 
     @RequestMapping("/user")
-    public Principal user(Principal principal) {
-        return principal;
-//        Map<String, Object> map = new LinkedHashMap<>();
-//        map.put("name", user.getName());
-//        map.put("roles", AuthorityUtils.authorityListToSet(((Authentication) user).getAuthorities()));
-//        return map;
+    public Map<String, Object> user(Principal user) {
+        Map<String, Object> map = new LinkedHashMap<>();
+        map.put("name", user.getName());
+        map.put("roles", AuthorityUtils.authorityListToSet(((Authentication) user).getAuthorities()));
+        return map;
     }
 }
