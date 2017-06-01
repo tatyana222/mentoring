@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').factory('UserService', ['$http', '$q', function($http, $q){
+angular.module('app').factory('userService', ['$http', '$q', function($http, $q){
 
     var REST_SERVICE_URI = '/web-project/users';
 
@@ -46,7 +46,7 @@ angular.module('app').factory('UserService', ['$http', '$q', function($http, $q)
 
     function updateUser(user, id) {
         var deferred = $q.defer();
-        $http.put(REST_SERVICE_URI+id, user)
+        $http.put(REST_SERVICE_URI + "/" + id, user)
             .then(
                 function (response) {
                     deferred.resolve(response.data);
@@ -61,7 +61,7 @@ angular.module('app').factory('UserService', ['$http', '$q', function($http, $q)
 
     function deleteUser(id) {
         var deferred = $q.defer();
-        $http.delete(REST_SERVICE_URI+id)
+        $http.delete(REST_SERVICE_URI + "/" + id)
             .then(
                 function (response) {
                     deferred.resolve(response.data);

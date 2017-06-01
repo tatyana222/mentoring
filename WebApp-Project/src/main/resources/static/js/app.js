@@ -9,14 +9,6 @@ app.config(function ($httpProvider) {
 app.controller("authController", function ($http, $location, $rootScope) {
     var self = this;
 
-    // $http.get("/web-project/user").then(function (response) {
-    //     self.user = response.data.userAuthentication.details.name;
-    //     $rootScope.authenticated = true;
-    // }, function () {
-    //     self.user = "N/A";
-    //     $rootScope.authenticated = false;
-    // });
-
     var authenticate = function(credentials, callback) {
 
         var headers = credentials ? {
@@ -25,7 +17,6 @@ app.controller("authController", function ($http, $location, $rootScope) {
         } : {};
 
         $http.get("/web-project/user", {headers : headers}).then(function (response) {
-            // self.user = response.data.userAuthentication.details.name;
             var data = response.data;
             self.user = data.name;
             $rootScope.admin = data.roles && data.roles.indexOf("ROLE_ADMIN")>-1;
@@ -47,7 +38,6 @@ app.controller("authController", function ($http, $location, $rootScope) {
                 $location.path("/");
                 self.error = false;
             } else {
-                // $location.path("/login");
                 self.error = true;
             }
         });
@@ -88,8 +78,14 @@ app.config(function ($routeProvider) {
 
         // route for the users page
         .when('/users', {
-            templateUrl: 'web-project/users.html'
-//                controller  : 'userController'
+            templateUrl: 'web-project/users-list.html'
+            // controller: 'userController'
+        })
+
+        // route for the user profile page
+        .when('/user-profile', {
+            templateUrl: 'web-project/user-profile.html'
+            // controller: 'userController'
         });
 });
 

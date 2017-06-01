@@ -11,8 +11,8 @@ public class PageController {
 //        return "index";
 //    }
 
-    @RequestMapping("/users")
-    public String users() {
-        return "users";
-    }
+//    @RequestMapping("/users")
+//    public String users() {
+//        return "users";
+//    }
 }

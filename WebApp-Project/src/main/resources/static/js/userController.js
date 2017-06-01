@@ -1,8 +1,8 @@
 'use strict';
 
-app.controller('UserController', ['$scope', 'UserService', function($scope, UserService) {
+app.controller('userController', ['$scope', 'userService', '$location', function($scope, userService, $location) {
     var self = this;
-    self.user={id:null,username:'',address:'',email:''};
+    self.user={id:null, name:'', role:'', email:''};
     self.users=[];
 
     self.submit = submit;
@@ -10,11 +10,10 @@ app.controller('UserController', ['$scope', 'UserService', function($scope, User
     self.remove = remove;
     self.reset = reset;
 
-
     fetchAllUsers();
 
     function fetchAllUsers(){
-        UserService.fetchAllUsers()
+        userService.fetchAllUsers()
             .then(
                 function(d) {
                     self.users = d;
@@ -26,7 +25,7 @@ app.controller('UserController', ['$scope', 'UserService', function($scope, User
     }
 
     function createUser(user){
-        UserService.createUser(user)
+        userService.createUser(user)
             .then(
                 fetchAllUsers,
                 function(errResponse){
@@ -36,7 +35,7 @@ app.controller('UserController', ['$scope', 'UserService', function($scope, User
     }
 
     function updateUser(user, id){
-        UserService.updateUser(user, id)
+        userService.updateUser(user, id)
             .then(
                 fetchAllUsers,
                 function(errResponse){
@@ -46,7 +45,7 @@ app.controller('UserController', ['$scope', 'UserService', function($scope, User
     }
 
     function deleteUser(id){
-        UserService.deleteUser(id)
+        userService.deleteUser(id)
             .then(
                 fetchAllUsers,
                 function(errResponse){
@@ -74,6 +73,7 @@ app.controller('UserController', ['$scope', 'UserService', function($scope, User
                 break;
             }
         }
+        $location.path("/user-profile");
     }
 
     function remove(id){

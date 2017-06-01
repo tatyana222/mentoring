@@ -1,22 +1,31 @@
 package com.epam.mentoring.webapp.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import com.epam.mentoring.webapp.domain.User;
+import com.epam.mentoring.webapp.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-@RestController(value = "/users")
+import java.util.List;
+
+@RestController
 public class UserController {
+
+    @Autowired
+    private UserRepository userRepository;
 
     //-------------------Retrieve All Users--------------------------------------------------------
 
-//    @RequestMapping(value = "/user/", method = RequestMethod.GET)
-//    public ResponseEntity<List<User>> listAllUsers() {
-//        List<User> users = userService.findAllUsers();
-//        if(users.isEmpty()){
-//            return new ResponseEntity<List<User>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
-//        }
-//        return new ResponseEntity<List<User>>(users, HttpStatus.OK);
-//    }
+    @GetMapping(value = "/users", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<User>> list() {
+        List<User> users = userRepository.findAll();
+        if(users.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(users, HttpStatus.OK);
+    }
 //
 //
 //
@@ -78,21 +87,21 @@ public class UserController {
 //
 //
 //
-//    //------------------- Delete a User --------------------------------------------------------
-//
-//    @RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
-//    public ResponseEntity<User> deleteUser(@PathVariable("id") long id) {
-//        System.out.println("Fetching & Deleting User with id " + id);
-//
-//        User user = userService.findById(id);
-//        if (user == null) {
-//            System.out.println("Unable to delete. User with id " + id + " not found");
-//            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
-//        }
-//
-//        userService.deleteUserById(id);
-//        return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
-//    }
+    //------------------- Delete a User --------------------------------------------------------
+
+    @DeleteMapping(value = "/users/{id}")
+    public ResponseEntity<Long> deleteUser(@PathVariable("id") long id) {
+        System.out.println("Fetching & Deleting User with id " + id);
+
+        User user = userRepository.findOne(id);
+        if (user == null) {
+            System.out.println("Unable to delete. User with id " + id + " not found");
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        userRepository.delete(id);
+        return new ResponseEntity<>(id, HttpStatus.OK);
+    }
 //
 //
 //

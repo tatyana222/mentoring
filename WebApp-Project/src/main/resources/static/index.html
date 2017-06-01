@@ -19,7 +19,6 @@
     <script type="text/javascript" src="/web-project/webjars/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/web-project/webjars/bootstrap/js/bootstrap.min.js"></script>
 
-
 </head>
 
 <body ng-app="app" class="ng-cloak">
@@ -36,7 +35,7 @@
                 <li><a href="web-project#!/"><i class="fa fa-home"></i> Home</a></li>
                 <li><a href="web-project#!/about"><i class="fa fa-shield"></i> About</a></li>
                 <li><a href="web-project#!/contact"><i class="fa fa-comment"></i> Contact</a></li>
-                <li ng-show="authenticated && admin"><a href="web-project#!/users"><i class="fa fa-users"></i> Users</a></li>
+                <li ng-if="authenticated && admin"><a href="web-project#!/users"><i class="fa fa-users"></i> Users</a></li>
 
                 <li>
                     <div ng-controller="authController as authController">
@@ -122,6 +121,8 @@
 <script type="text/javascript" src="/web-project/webjars/angularjs/angular-route.js"></script>
 <script type="text/javascript" src="/web-project/js/app.js"></script>
 
+<script type="text/javascript" src="/web-project/js/userService.js"></script>
+<script type="text/javascript" src="/web-project/js/userController.js"></script>
 <!--<script type="text/javascript" th:src="@{/static/js/userService.js}"></script>-->
 <!--<script type="text/javascript" th:src="@{/static/js/userController.js}"></script>-->
 </body>
