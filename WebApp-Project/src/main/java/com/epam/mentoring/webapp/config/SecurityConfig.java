@@ -11,6 +11,8 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @Configuration
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
+// To use Facebook OAuth2 login the @EnableOAuth2Sso added
+// behavior: now digits (user id?) are displayed in case of Facebook login
 @EnableOAuth2Sso
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
