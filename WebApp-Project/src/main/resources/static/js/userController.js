@@ -73,7 +73,6 @@ app.controller('userController', ['$scope', 'userService', '$location', function
                 break;
             }
         }
-        $location.path("/user-profile");
     }
 
     function remove(id){
@@ -86,8 +85,8 @@ app.controller('userController', ['$scope', 'userService', '$location', function
 
 
     function reset(){
-        self.user={id:null,username:'',address:'',email:''};
-        $scope.myForm.$setPristine(); //reset Form
+        self.user={id:null, name:'', role:'', email:''};
+        self.userForm.$setPristine(); //reset Form
     }
 
 }]);

@@ -1,5 +1,6 @@
 package com.epam.mentoring.webapp.controller;
 
+import com.epam.mentoring.webapp.domain.Role;
 import com.epam.mentoring.webapp.domain.User;
 import com.epam.mentoring.webapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,30 +64,30 @@ public class UserController {
 //    }
 //
 //
-//
-//    //------------------- Update a User --------------------------------------------------------
-//
-//    @RequestMapping(value = "/user/{id}", method = RequestMethod.PUT)
-//    public ResponseEntity<User> updateUser(@PathVariable("id") long id, @RequestBody User user) {
-//        System.out.println("Updating User " + id);
-//
-//        User currentUser = userService.findById(id);
-//
-//        if (currentUser==null) {
-//            System.out.println("User with id " + id + " not found");
-//            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
-//        }
-//
-//        currentUser.setUsername(user.getUsername());
-//        currentUser.setAddress(user.getAddress());
-//        currentUser.setEmail(user.getEmail());
-//
-//        userService.updateUser(currentUser);
-//        return new ResponseEntity<User>(currentUser, HttpStatus.OK);
-//    }
-//
-//
-//
+
+    //------------------- Update a User --------------------------------------------------------
+
+    @PutMapping(value = "/users/{id}")
+    public ResponseEntity<User> update(@PathVariable("id") long id, @RequestBody User user) {
+        System.out.println("Updating User " + id);
+
+        User currentUser = userRepository.findOne(id);
+
+        if (currentUser == null) {
+            System.out.println("User with id " + id + " not found");
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        currentUser.setName(user.getName());
+        currentUser.setRole(user.getRole());
+        currentUser.setEmail(user.getEmail());
+
+        userRepository.save(user);
+        return new ResponseEntity<>(currentUser, HttpStatus.OK);
+    }
+
+
+
     //------------------- Delete a User --------------------------------------------------------
 
     @DeleteMapping(value = "/users/{id}")
@@ -102,16 +103,4 @@ public class UserController {
         userRepository.delete(id);
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
-//
-//
-//
-//    //------------------- Delete All Users --------------------------------------------------------
-//
-//    @RequestMapping(value = "/user/", method = RequestMethod.DELETE)
-//    public ResponseEntity<User> deleteAllUsers() {
-//        System.out.println("Deleting All Users");
-//
-//        userService.deleteAllUsers();
-//        return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
-//    }
 }

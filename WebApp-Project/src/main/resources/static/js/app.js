@@ -83,10 +83,10 @@ app.config(function ($routeProvider) {
         })
 
         // route for the user profile page
-        .when('/user-profile', {
-            templateUrl: 'web-project/user-profile.html'
-            // controller: 'userController'
-        });
+        // .when('/user-profile', {
+        //     templateUrl: 'web-project/user-profile.html'
+        //     // controller: 'userController'
+        // });
 });
 
 // create the controller and inject Angular's $scope
