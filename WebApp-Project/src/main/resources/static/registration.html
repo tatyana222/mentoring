@@ -1,0 +1,80 @@
+<div class="generic-container" ng-controller="userController as userController">
+    <div class="panel panel-default">
+        <div class="panel-heading"><span class="lead">Registration </span></div>
+        <div class="formcontainer">
+            <form name="userController.userForm" class="form-horizontal">
+                <input type="hidden" ng-model="userController.user.id"/>
+
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label class="col-md-2 control-lable" for="name">Name</label>
+                        <div class="col-md-7">
+                            <input type="text" ng-model="userController.user.name" id="name"
+                                   class="username form-control input-sm" placeholder="Name" required
+                                   ng-minlength="3"/>
+                            <div class="has-error" ng-show="userForm.$dirty">
+                                <span ng-show="userForm.name.$error.required">This is a required field</span>
+                                <span ng-show="userForm.name.$error.minlength">Minimum length required is 3</span>
+                                <span ng-show="userForm.name.$invalid">This field is invalid </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label class="col-md-2 control-lable" for="email">Email</label>
+                        <div class="col-md-7">
+                            <input type="email" ng-model="userController.user.email" id="email"
+                                   class="email form-control input-sm" placeholder="Email" required/>
+                            <div class="has-error" ng-show="userForm.$dirty">
+                                <span ng-show="userForm.email.$error.required">This is a required field</span>
+                                <span ng-show="userForm.email.$invalid">This field is invalid </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label class="col-md-2 control-lable" for="login">Login</label>
+                        <div class="col-md-7">
+                            <input type="text" ng-model="userController.user.login" id="login"
+                                   class="form-control input-sm" placeholder="Login" ng-minlength="5" required/>
+                            <div class="has-error" ng-show="userForm.$dirty">
+                                <span ng-show="userForm.email.$error.required">This is a required field</span>
+                                <span ng-show="userForm.name.$error.minlength">Minimum length required is 5</span>
+                                <span ng-show="userForm.email.$invalid">This field is invalid </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label class="col-md-2 control-lable" for="login">Password</label>
+                        <div class="col-md-7">
+                            <input type="password" ng-model="userController.user.password" id="password"
+                                   class="form-control input-sm" placeholder="Password" ng-minlength="5" required/>
+                            <div class="has-error" ng-show="userForm.$dirty">
+                                <span ng-show="userForm.email.$error.required">This is a required field</span>
+                                <span ng-show="userForm.name.$error.minlength">Minimum length required is 5</span>
+                                <span ng-show="userForm.email.$invalid">This field is invalid </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-actions floatRight">
+                        <input type="submit" value="Register" class="btn btn-primary" ng-disabled="userForm.$error.required"
+                               ng-click="userController.register()">
+                        <button type="button" ng-click="userController.reset()" class="btn btn-info"
+                                ng-disabled="userForm.$pristine">Reset Form
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

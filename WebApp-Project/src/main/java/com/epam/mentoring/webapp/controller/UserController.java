@@ -1,13 +1,14 @@
 package com.epam.mentoring.webapp.controller;
 
-import com.epam.mentoring.webapp.domain.Role;
 import com.epam.mentoring.webapp.domain.User;
 import com.epam.mentoring.webapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 
@@ -27,43 +28,38 @@ public class UserController {
         }
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
-//
-//
-//
-//    //-------------------Retrieve Single User--------------------------------------------------------
-//
-//    @RequestMapping(value = "/user/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-//    public ResponseEntity<User> getUser(@PathVariable("id") long id) {
-//        System.out.println("Fetching User with id " + id);
-//        User user = userService.findById(id);
-//        if (user == null) {
-//            System.out.println("User with id " + id + " not found");
-//            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
-//        }
-//        return new ResponseEntity<User>(user, HttpStatus.OK);
-//    }
-//
-//
-//
-//    //-------------------Create a User--------------------------------------------------------
-//
-//    @RequestMapping(value = "/user/", method = RequestMethod.POST)
-//    public ResponseEntity<Void> createUser(@RequestBody User user,    UriComponentsBuilder ucBuilder) {
-//        System.out.println("Creating User " + user.getUsername());
-//
-//        if (userService.isUserExist(user)) {
+
+    //-------------------Create a User--------------------------------------------------------
+
+    @PostMapping(value = "/users")
+    public ResponseEntity<Void> createUser(@RequestBody User user, UriComponentsBuilder ucBuilder) {
+        System.out.println("Creating User " + user.getLogin());
+
+//        if (userRepository.isUserExist(user)) {
 //            System.out.println("A User with name " + user.getUsername() + " already exist");
 //            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
 //        }
-//
-//        userService.saveUser(user);
-//
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setLocation(ucBuilder.path("/user/{id}").buildAndExpand(user.getId()).toUri());
-//        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
-//    }
-//
-//
+
+        userRepository.save(user);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(ucBuilder.path("/users/{id}").buildAndExpand(user.getId()).toUri());
+        return new ResponseEntity<>(headers, HttpStatus.CREATED);
+    }
+
+    //-------------------Retrieve Single User--------------------------------------------------------
+
+    @GetMapping(value = "/users/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> getUser(@PathVariable("id") long id) {
+        System.out.println("Fetching User with id " + id);
+
+        User user = userRepository.findOne(id);
+        if (user == null) {
+            System.out.println("User with id " + id + " not found");
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
 
     //------------------- Update a User --------------------------------------------------------
 
@@ -85,8 +81,6 @@ public class UserController {
         userRepository.save(user);
         return new ResponseEntity<>(currentUser, HttpStatus.OK);
     }
-
-
 
     //------------------- Delete a User --------------------------------------------------------
 

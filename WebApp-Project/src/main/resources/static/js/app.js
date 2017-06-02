@@ -49,7 +49,6 @@ app.controller("authController", function ($http, $location, $rootScope) {
             $rootScope.admin = false;
             $location.path("/");
         }, function () {
-            console.log("Logout failed");
             $rootScope.authenticated = true;
         });
     };
@@ -79,14 +78,12 @@ app.config(function ($routeProvider) {
         // route for the users page
         .when('/users', {
             templateUrl: 'web-project/users-list.html'
-            // controller: 'userController'
         })
 
-        // route for the user profile page
-        // .when('/user-profile', {
-        //     templateUrl: 'web-project/user-profile.html'
-        //     // controller: 'userController'
-        // });
+        // route for the user registration
+        .when('/registration', {
+            templateUrl: 'web-project/registration.html'
+        });
 });
 
 // create the controller and inject Angular's $scope

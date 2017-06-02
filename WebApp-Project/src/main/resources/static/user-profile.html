@@ -34,12 +34,42 @@
                 </div>
             </div>
 
+            <div class="row" ng-if="authenticated && !admin">
+                <div class="form-group col-md-12">
+                    <label class="col-md-2 control-lable" for="login">Login</label>
+                    <div class="col-md-7">
+                        <input type="text" ng-model="userController.user.login" id="login"
+                               class="form-control input-sm" placeholder="Login" ng-minlength="5" required/>
+                        <div class="has-error" ng-show="userForm.$dirty">
+                            <span ng-show="userForm.email.$error.required">This is a required field</span>
+                            <span ng-show="userForm.name.$error.minlength">Minimum length required is 5</span>
+                            <span ng-show="userForm.email.$invalid">This field is invalid </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" ng-if="authenticated && !admin">
+                <div class="form-group col-md-12">
+                    <label class="col-md-2 control-lable" for="login">Password</label>
+                    <div class="col-md-7">
+                        <input type="text" ng-model="userController.user.password" id="password"
+                               class="form-control input-sm" placeholder="Password" ng-minlength="5" required/>
+                        <div class="has-error" ng-show="userForm.$dirty">
+                            <span ng-show="userForm.email.$error.required">This is a required field</span>
+                            <span ng-show="userForm.name.$error.minlength">Minimum length required is 5</span>
+                            <span ng-show="userForm.email.$invalid">This field is invalid </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="row" ng-if="authenticated && admin">
                 <div class="form-group col-md-12">
                     <label class="col-md-2 control-lable" for="role">User Role</label>
                     <div class="col-md-7">
                         <input type="text" ng-model="userController.user.role" id="role"
-                               class="username form-control input-sm" placeholder="Enter user role in upper case" required/>
+                               class="form-control input-sm" placeholder="Enter user role in upper case" required/>
                         <div class="has-error" ng-show="userForm.$dirty">
                             <span ng-show="userForm.role.$error.required">This is a required field</span>
                         </div>

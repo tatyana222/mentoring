@@ -30,6 +30,9 @@ angular.module('app').factory('userService', ['$http', '$q', function($http, $q)
 
     function createUser(user) {
         var deferred = $q.defer();
+        if (user.role === null || user.role.length === 0 || user.role === undefined) {
+            user.role = "USER"
+        }
         $http.post(REST_SERVICE_URI, user)
             .then(
                 function (response) {

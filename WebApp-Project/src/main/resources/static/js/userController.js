@@ -9,6 +9,7 @@ app.controller('userController', ['$scope', 'userService', '$location', function
     self.edit = edit;
     self.remove = remove;
     self.reset = reset;
+    self.register = register;
 
     fetchAllUsers();
 
@@ -44,6 +45,16 @@ app.controller('userController', ['$scope', 'userService', '$location', function
             );
     }
 
+    function register(){
+        userService.createUser(self.user)
+            .then(
+                $location.path("/"),
+                function(errResponse){
+                    console.error('Error while creating User');
+                }
+            );
+    }
+
     function deleteUser(id){
         userService.deleteUser(id)
             .then(
@@ -56,17 +67,14 @@ app.controller('userController', ['$scope', 'userService', '$location', function
 
     function submit() {
         if(self.user.id===null){
-            console.log('Saving New User', self.user);
             createUser(self.user);
         }else{
             updateUser(self.user, self.user.id);
-            console.log('User updated with id ', self.user.id);
         }
         reset();
     }
 
     function edit(id){
-        console.log('id to be edited', id);
         for(var i = 0; i < self.users.length; i++){
             if(self.users[i].id === id) {
                 self.user = angular.copy(self.users[i]);
@@ -76,7 +84,6 @@ app.controller('userController', ['$scope', 'userService', '$location', function
     }
 
     function remove(id){
-        console.log('id to be deleted', id);
         if(self.user.id === id) {//clean form if the user to be deleted is shown there.
             reset();
         }

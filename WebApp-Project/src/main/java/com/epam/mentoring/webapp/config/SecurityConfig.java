@@ -16,9 +16,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.httpBasic().and();
 
         http.authorizeRequests()
-                .antMatchers("/login**", "/webjars/**", "/index.html", "/home.html", "/about.html", "/contact.html")
+                .antMatchers("/login**", "/webjars/**", "/index.html", "/home.html", "/about.html", "/contact.html",
+                        "/registration.html", "/user-profile.html", "/users")
                 .permitAll()
-                .antMatchers("/users**").hasRole("ADMIN")
+                .antMatchers("/users-list.html").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated().and();
 
