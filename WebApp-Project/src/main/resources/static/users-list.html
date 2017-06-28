@@ -1,0 +1,35 @@
+<div class="generic-container" ng-controller="userController as userController">
+    <div class="panel panel-default">
+        <div class="panel-heading"><span class="lead">List of Users</span></div>
+        <div class="tablecontainer">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th width="10%">ID</th>
+                    <th width="15%">Name</th>
+                    <th width="15%">Role</th>
+                    <th width="20%">Email</th>
+                    <th width="20%"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="u in userController.users">
+                    <td><span ng-bind="u.id"></span></td>
+                    <td><span ng-bind="u.name"></span></td>
+                    <td><span ng-bind="u.role"></span></td>
+                    <td><span ng-bind="u.email"></span></td>
+                    <td>
+                        <button type="button" ng-click="userController.edit(u.id)"
+                                class="btn btn-success custom-width">Edit
+                        </button>
+                        <button type="button" ng-click="userController.remove(u.id)"
+                                class="btn btn-danger custom-width">Remove
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div ng-include="'/web-project/user-profile.html'"></div>
+</div>

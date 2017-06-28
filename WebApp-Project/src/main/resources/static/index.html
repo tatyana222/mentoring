@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Demo</title>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width"/>
+    <base href="/"/>
+    <!--<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>-->
+    <!--<link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/css/font-awesome.css}"/>-->
+    <!--<link rel="stylesheet" type="text/css" th:href="@{/css/app.css}" href="../static/css/app.css"/>-->
+    <!--<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>-->
+    <!--<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>-->
+
+    <link rel="stylesheet" type="text/css" href="/web-project/webjars/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/web-project/webjars/font-awesome/css/font-awesome.css"/>
+    <link rel="stylesheet" type="text/css" href="/web-project/css/app.css"/>
+    <script type="text/javascript" src="/web-project/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/web-project/webjars/bootstrap/js/bootstrap.min.js"></script>
+
+</head>
+
+<body ng-app="app" class="ng-cloak">
+
+<!-- HEADER AND NAVBAR -->
+<header>
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Web Project</a>
+            </div>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="web-project#!/"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="web-project#!/about"><i class="fa fa-shield"></i> About</a></li>
+                <li><a href="web-project#!/contact"><i class="fa fa-comment"></i> Contact</a></li>
+                <li ng-if="authenticated && admin"><a href="web-project#!/users"><i class="fa fa-users"></i> Users</a>
+                </li>
+
+                <li>
+                    <div ng-controller="authController as authController">
+                        <div ng-show="!authenticated" class="li-item">
+                            <!--<a th:href="@{/login}">Login</a>-->
+
+                            <a href="javascript:void(0)" class="dropdown-toggle navbar-link" data-toggle="dropdown">Login
+                                <span class="caret"></span></a>
+                            <ul id="login-dropdown" class="dropdown-menu">
+                                <li>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            Login via
+                                            <div class="social-buttons">
+                                                <a href="/web-project/login" class="btn btn-fb"><i
+                                                        class="fa fa-facebook"></i> Facebook</a>
+                                            </div>
+                                            or
+                                            <div class="alert alert-danger" role="alert" ng-show="authController.error">
+                                                Error :( Please try again.
+                                            </div>
+                                            <form class="form" role="form" method="post" accept-charset="UTF-8"
+                                                  id="login-nav">
+                                                <div class="form-group">
+                                                    <label class="sr-only" for="inputLogin">Login</label>
+                                                    <input type="text" class="form-control" id="inputLogin"
+                                                           placeholder="Login" required="required"
+                                                           ng-model="authController.credentials.username"
+                                                           name="username"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="sr-only" for="inputPassword">Password</label>
+                                                    <input type="password" class="form-control" id="inputPassword"
+                                                           placeholder="Password" required="required"
+                                                           ng-model="authController.credentials.password"
+                                                           name="password"/>
+                                                    <!--<div class="help-block text-right"><a href="">Forget the password ?</a></div>-->
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="submit" class="btn btn-default btn-block"
+                                                           ng-click="authController.login()" value="Sign in"></input>
+                                                </div>
+                                                <!--<div class="checkbox">-->
+                                                <!--<label>-->
+                                                <!--<input type="checkbox"> keep me logged-in-->
+                                                <!--</label>-->
+                                                <!--</div>-->
+                                            </form>
+                                            <div class="bottom text-center">
+                                                New here ? <a href="web-project#!/registration" class="navbar-link"><b>Join Us</b></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+
+
+                            <!--<a th:href="@{/login}"><i class="fa fa-facebook-square"></i></a>-->
+                        </div>
+                        <div ng-show="authenticated" class="btn-group open user-submenu">
+                            <a class="btn btn-default navbar-link" href="javascript:void(0)"
+                               ng-bind="authController.user"><i class="fa fa-user fa-fw"></i></a>
+                            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">
+                                <span class="fa fa-caret-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-left">
+                                <li><a href="#"><i class="fa fa-pencil fa-fw"></i> Edit profile</a></li>
+                                <li class="divider"></li>
+                                <li><a href="javascript:void(0)" ng-click="authController.logout()"><i
+                                        class="fa fa-unlock"></i> Log Out</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<!-- MAIN CONTENT AND INJECTED VIEWS -->
+<div id="main">
+
+    <!-- angular templating -->
+    <!-- this is where content will be injected -->
+    <div class="ng-view"></div>
+
+</div>
+
+<!--<script type="text/javascript" th:src="@{/webjars/angularjs/angular.min.js}"></script>-->
+<!--<script type="text/javascript" th:src="@{/webjars/angularjs/angular-route.js}"></script>-->
+<!--<script type="text/javascript" th:src="@{/js/app.js}" src="../static/js/app.js"></script>-->
+<script type="text/javascript" src="/web-project/webjars/angularjs/angular.min.js"></script>
+<script type="text/javascript" src="/web-project/webjars/angularjs/angular-route.js"></script>
+<script type="text/javascript" src="/web-project/js/app.js"></script>
+
+<script type="text/javascript" src="/web-project/js/userService.js"></script>
+<script type="text/javascript" src="/web-project/js/userController.js"></script>
+<!--<script type="text/javascript" th:src="@{/static/js/userService.js}"></script>-->
+<!--<script type="text/javascript" th:src="@{/static/js/userController.js}"></script>-->
+</body>
+</html>

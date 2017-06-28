@@ -1,0 +1,121 @@
+/*body, #mainWrapper {*/
+	/*height: 70%;*/
+	/*background-color:rgb(245, 245, 245);*/
+/*}*/
+
+/*body, .form-control{*/
+	/*font-size:12px!important;*/
+/*}*/
+
+.li-item {
+    color: #777;
+    padding: 15px;
+    line-height: 20px;
+}
+
+.user-submenu {
+    padding-top: 10px;
+}
+
+#login-dropdown{
+    min-width: 250px;
+    padding: 14px 14px 0;
+    overflow:hidden;
+    background-color:rgba(255,255,255,.8);
+}
+#login-dropdown .help-block{
+    font-size:12px
+}
+#login-dropdown .bottom{
+    background-color:rgba(255,255,255,.8);
+    border-top:1px solid #ddd;
+    clear:both;
+    padding:14px;
+}
+#login-dropdown .social-buttons{
+    margin:12px 0
+}
+#login-dropdown .social-buttons a{
+    width: 49%;
+}
+#login-dropdown .form-group {
+    margin-bottom: 10px;
+}
+
+.btn-fb{
+    color: #fff;
+    background-color:#3b5998;
+}
+.btn-fb:hover{
+    color: #fff;
+    background-color:#496ebc
+}
+
+@media(max-width:768px){
+    #login-dropdown{
+        background-color: inherit;
+        color: #fff;
+    }
+    #login-dropdown .bottom{
+        background-color: inherit;
+        border-top:0 none;
+    }
+}
+
+.floatRight{
+	float:right;
+	margin-right: 18px;
+}
+
+.has-error{
+	color:red;
+}
+
+.formcontainer{
+	background-color: #fff;
+	padding: 20px;
+}
+
+.tablecontainer{
+	padding-left: 20px;
+}
+
+.generic-container {
+  width:80%;
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #EAE7E7;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 0 30px black;
+}
+
+.custom-width {
+    width: 80px !important;
+}
+
+.username.ng-valid {
+    background-color: lightgreen;
+}
+
+.username.ng-dirty.ng-invalid-required {
+    background-color: red;
+}
+
+.username.ng-dirty.ng-invalid-minlength {
+    background-color: yellow;
+}
+
+.email.ng-valid {
+    background-color: lightgreen;
+}
+
+.email.ng-dirty.ng-invalid-required {
+    background-color: red;
+}
+
+.email.ng-dirty.ng-invalid-email {
+    background-color: yellow;
+}
