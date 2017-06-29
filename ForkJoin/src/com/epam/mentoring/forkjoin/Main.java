@@ -20,6 +20,8 @@ public class Main {
 
         System.out.println(Arrays.toString(ints));
         System.out.println();
+        System.out.println("Sorted array size = " + ints.length);
+        System.out.println();
 
         System.out.println("1 element quicksort");
         int[] oneElementInts = new int[1];
