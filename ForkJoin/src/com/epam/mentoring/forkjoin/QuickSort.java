@@ -4,6 +4,8 @@ import java.util.concurrent.RecursiveAction;
 
 public class QuickSort extends RecursiveAction {
 
+    private static final int THRESHOLD = 1000;
+
     private int[] data;
     private int left;
     private int right;
@@ -23,9 +25,18 @@ public class QuickSort extends RecursiveAction {
     @Override
     protected void compute() {
         if (left < right) {
-            int pivot = partition(data, left, right);
-            invokeAll(new QuickSort(data, left, pivot),
-                    new QuickSort(data, pivot + 1, right));
+            // sort in one thread when number of elements is less than threshold = 1000
+            // because splitting the task between threads has a cost and it is still much higher than simple recursive method call
+            // that's why it's better to use multiple cores only when there is really large array
+            if (right - left < THRESHOLD) {
+                int pivot = QuickSortOneThread.partition(data, left, right);
+                QuickSortOneThread.quicksort(data, left, pivot);
+                QuickSortOneThread.quicksort(data, pivot + 1, right);
+            } else {
+                int pivot = partition(data, left, right);
+                invokeAll(new QuickSort(data, left, pivot),
+                        new QuickSort(data, pivot + 1, right));
+            }
         }
     }
 

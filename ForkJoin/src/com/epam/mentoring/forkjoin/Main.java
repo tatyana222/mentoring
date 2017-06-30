@@ -31,5 +31,18 @@ public class Main {
         pool.invoke(oneElementQuickSort);
 
         System.out.println(Arrays.toString(oneElementInts));
+        System.out.println();
+
+        System.out.println("100 elements quicksort");
+        int[] oneHundredInts = random.ints(100,0, 101).toArray();
+
+        System.out.println(Arrays.toString(oneHundredInts));
+
+        QuickSort oneHundredQuickSort = new QuickSort(oneHundredInts);
+        pool.invoke(oneHundredQuickSort);
+
+        System.out.println(Arrays.toString(oneHundredInts));
+        System.out.println();
+        System.out.println("Sorted array size = " + oneHundredInts.length);
     }
 }
