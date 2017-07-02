@@ -3,6 +3,8 @@ package com.epam.mentoring.mm.task1;
 import java.math.BigInteger;
 import java.util.Random;
 
+// to reproduce the error without waiting a lot (cause max heap size depends on RAM size in your workstation)
+// please set -Xms128M -Xmx128M or smaller
 public class OutOfMemoryError {
 
     public static void main(String[] args) {
