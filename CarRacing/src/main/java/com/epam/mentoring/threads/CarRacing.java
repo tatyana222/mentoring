@@ -54,6 +54,7 @@ public class CarRacing {
         private long friction;
         private long distance;
         private String name;
+        private boolean disqualified;
 
         public Car(String name, long friction) {
             this.name = name;
@@ -76,14 +77,15 @@ public class CarRacing {
             } catch (InterruptedException e) {
                 LOG.error(e);
                 LOG.info(name + " has been disqualified!");
+                disqualified = true;
             } finally {
-                finish(name);
+                finish(name, disqualified);
             }
         }
     }
 
-    public static synchronized void finish(String carName) {
-        if (winner == null) {
+    public static synchronized void finish(String carName, boolean disqualified) {
+        if (winner == null && !disqualified) {
             winner = carName;
         }
         finishLatch.countDown();
