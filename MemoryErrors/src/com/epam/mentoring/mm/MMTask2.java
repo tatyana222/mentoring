@@ -6,10 +6,11 @@ import java.util.List;
 public class MMTask2 {
 
     public static void main(String[] args) throws InterruptedException {
-        List<Object> list = new ArrayList<>();
+        ArrayList<Object> list = new ArrayList<>(1);
+        list.ensureCapacity(1);
+        
         while(true) {
             list.add(new Object());
-            System.out.println(list);
         }
     }
 }
