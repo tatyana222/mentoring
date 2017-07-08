@@ -19,7 +19,7 @@ public class Friendship {
 
     public Friendship(User user, User actionUser, LocalDateTime creationDate) {
         this.user = user;
-        this.actionUser = user;
+        this.actionUser = actionUser;
         this.creationDate = creationDate;
     }
 }

@@ -71,12 +71,24 @@ public class MongoDBApplication implements CommandLineRunner {
         User user1 = new User("user1", "User 1", "New", user1Birthday, Collections.singletonList(actionUser));
         userRepository.save(user1);
 
-        Friendship friendship = new Friendship(user1, actionUser, LocalDateTime.now());
-        friendshipRepository.save(friendship);
+        LocalDateTime friendshipDate = LocalDateTime.of(2017, Month.JUNE, 7, 17, 0);
+        Friendship friendship1 = new Friendship(user1, actionUser, friendshipDate);
+        friendshipRepository.save(friendship1);
+
+        LocalDateTime user4Birthday = LocalDateTime.of(1995, Month.DECEMBER, 20, 6, 0);
+        User user4 = new User("user4", "User 4", "New", user4Birthday, Arrays.asList(actionUser, user1));
+        userRepository.save(user4);
+
+        Friendship friendship2 = new Friendship(user4, actionUser, LocalDateTime.now());
+        friendshipRepository.save(friendship2);
+
+        Friendship friendship3 = new Friendship(user4, user1, LocalDateTime.now());
+        friendshipRepository.save(friendship3);
 
         List<FriendshipResult> maxNumberByMonth = friendshipRepository.getMaxNumberByMonth();
         for(FriendshipResult friendshipResult : maxNumberByMonth) {
             System.out.println("Month " + friendshipResult.getMonth() + " "
+                    + "User " + friendshipResult.getUser().getLogin() + " "
                     + "Max number of friendships " + friendshipResult.getMaxNumber());
         }
     }
