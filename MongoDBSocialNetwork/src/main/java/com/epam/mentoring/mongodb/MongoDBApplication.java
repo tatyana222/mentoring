@@ -88,7 +88,6 @@ public class MongoDBApplication implements CommandLineRunner {
         List<FriendshipResult> maxNumberByMonth = friendshipRepository.getMaxNumberByMonth();
         for(FriendshipResult friendshipResult : maxNumberByMonth) {
             System.out.println("Month " + friendshipResult.getMonth() + " "
-                    + "User " + friendshipResult.getUser().getLogin() + " "
                     + "Max number of friendships " + friendshipResult.getMaxNumber());
         }
     }
