@@ -1,9 +1,7 @@
 package com.epam.mentoring.mongodb;
 
-import com.epam.mentoring.mongodb.model.Friendship;
-import com.epam.mentoring.mongodb.model.Message;
-import com.epam.mentoring.mongodb.model.Movie;
-import com.epam.mentoring.mongodb.model.User;
+import com.epam.mentoring.mongodb.model.*;
+import com.epam.mentoring.mongodb.repository.audiotrack.AudioTrackRepository;
 import com.epam.mentoring.mongodb.repository.friendship.FriendshipRepository;
 import com.epam.mentoring.mongodb.repository.friendship.FriendshipResult;
 import com.epam.mentoring.mongodb.repository.message.MessageRepository;
@@ -34,6 +32,8 @@ public class MongoDBApplication implements CommandLineRunner {
     private FriendshipRepository friendshipRepository;
     @Autowired
     private MovieRepository movieRepository;
+    @Autowired
+    private AudioTrackRepository audioTrackRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(MongoDBApplication.class, args);
@@ -41,11 +41,24 @@ public class MongoDBApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
+        // generateData();
+
         reportAverageNumberOfMessagesByDayOfWeek();
 
         reportMaxNumberOfFriendshipsFromMonthToMonth();
 
         reportMinNumberOfWatchedMoviesForUsersWithHundredMoreFriends();
+    }
+
+    // this method works slow and might occupy a lot of memory that's why it's commented
+    private void generateData() {
+        for(long i = 0; i < 11000000000L; i++) {
+            userRepository.save(new User());
+            movieRepository.save(new Movie());
+            audioTrackRepository.save(new AudioTrack());
+            messageRepository.save(new Message());
+            friendshipRepository.save(new Friendship());
+        }
     }
 
     private void reportAverageNumberOfMessagesByDayOfWeek() {

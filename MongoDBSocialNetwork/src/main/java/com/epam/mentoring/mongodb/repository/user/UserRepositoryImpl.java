@@ -21,6 +21,7 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
 
     @Override
     public List<MovieResult> getMinNumberOfWatchedMoviesWhenHundredMoreFriends() {
+        // here number of friends should be greater than 0 (empty list) because 100 is a lot
         Aggregation aggregation = newAggregation(
                 match(where(WATCHED_MOVIES).gt(EMPTY_LIST).and("friends").gt(EMPTY_LIST)),
                 project("id").and(WATCHED_MOVIES).size().as(NUMBER_OF_MOVIES),
