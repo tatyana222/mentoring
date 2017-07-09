@@ -20,6 +20,9 @@ public class User {
 
     private List<User> friends;
     private List<Message> messages;
+    // here two separate collections are used for movies and watchedMovies
+    // because mongodb does not allow to have an object as a key, for example:
+    // Map<Movie, Boolean> - Boolean is used to mark watched/nonwatched movies
     private List<Movie> movies;
     private List<Movie> watchedMovies;
     private List<AudioTrack> audioTracks;
