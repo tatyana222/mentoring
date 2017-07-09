@@ -21,6 +21,8 @@ public class MessageRepositoryImpl implements MessageRepositoryCustom {
 
     @Override
     public List<MessageResult> getAverageNumberByDayOfWeek() {
+        // dayOfWeek function returns the day of the week for a date as a number between 1 (Sunday) and 7 (Saturday)
+        // also, here count() is used for now because query becomes more complex if avg() function is used
         Aggregation aggregation = newAggregation(
                 project("id").andExpression("dayOfWeek(creationDate)").as(WEEKDAY),
                 group(WEEKDAY).count().as(AVERAGE_NUMBER),
